@@ -21,15 +21,17 @@ def janken
         return true
     elsif (player_hand == 0 && program_hand == 1)||(player_hand == 1 && program_hand == 2)||(player_hand == 2 && program_hand == 0)
         puts "----------------"
-        attimuite_win
+        @janken_winner = "player"
+        attimuite
     else
         puts "----------------"
-        attimuite_lose
+        @janken_winner = "program"
+        attimuite
     end
 end
                 
 
-def attimuite_win
+def attimuite
     puts "あっちむいて〜"
     puts "0(上) 1(右) 2(下) 3(左)"
     
@@ -43,34 +45,17 @@ def attimuite_win
     puts "あなたの手: #{atti[player_point]}"
     puts "相手の手: #{atti[program_point]}"
     
-    if player_point == program_point
-        puts "あなたの勝ちです"
+    if player_point == program_point && @janken_winner == "player"
+        puts
+        puts "あなたの勝ちです!"
+        return false
+    elsif player_point == program_point && @janken_winner == "program"
+        puts
+        puts "あなたの負けです..."
         return false
     else
         puts "---------------"
-        return true
-    end
-end
-
-def attimuite_lose
-    puts "あっちむいて〜"
-    puts "0(上) 1(右) 2(下) 3(左)"
-    
-    atti= ["上","右","下","左"]
-    
-    player_point =gets.to_i
-    program_point =rand(4)
-    
-    puts "ほい！"
-    puts "----------------"
-    puts "あなたの手: #{atti[player_point]}"
-    puts "相手の手: #{atti[program_point]}"
-    
-    if player_point == program_point
-        puts "あなたの負けです"
-        return false
-    else
-        puts "---------------"
+        puts "じゃんけん！"
         return true
     end
 end
